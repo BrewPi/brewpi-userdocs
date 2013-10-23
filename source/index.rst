@@ -14,7 +14,7 @@ If you really want to, you can still do your setup manually or just check the ma
 
 .. toctree::
     :maxdepth: 2
-    :numbered:
+    :numbered: 2
 
     installing-your-pi/rpi-setup
     automated-brewpi-install/automated-brewpi-install.rst
@@ -23,3 +23,4 @@ If you really want to, you can still do your setup manually or just check the ma
     after-install/device-configuration
     updating-brewpi/update-script.rst
     faq/faq-index.rst
+    changelog/changelog.rst
