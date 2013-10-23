@@ -19,6 +19,7 @@ If your Arduino is using a different serial port than /dev/ttyACM0, you will hav
 The altport setting is used when the normal port cannot be found.
 
 .. code-block:: text
+
     port = /dev/ttyACM0
     altport = /dev/ttyACM1
 
