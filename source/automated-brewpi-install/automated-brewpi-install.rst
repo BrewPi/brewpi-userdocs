@@ -4,11 +4,11 @@ We created scripts to install and update BrewPi, these scripts are part of the `
 The install script will install all dependencies, set up users and permissions, download the latest code base and setup a CRON job.
 Just answer the questions on the screen.
 
-
 Getting and running the install script
 --------------------------------------
 You can get the install and update scripts by cloning the BrewPi tools repository from GitHub.
 The scripts use git to check for self-updates, so keep them inside the repository.
+You can put the brewpi-tools dir anywhere you like, the instructions here assume the pi user's home directory.
 
 Use the following commands to clone the repository to the your current user's home dir and to run the install script:
 

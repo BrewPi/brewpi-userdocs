@@ -7,6 +7,7 @@ Getting the update script
 -------------------------
 If you didn't clone the `brewpi-tools repository on GitHub <https://github.com/BrewPi/brewpi-tools>`_ repository already,
 you can do it with the following command. This will clone it from GitHub into your current user's home directory.
+You can put the brewpi-tools dir anywhere you like, the instructions here assume the pi user's home directory.
 
 .. code-block:: bash
 
