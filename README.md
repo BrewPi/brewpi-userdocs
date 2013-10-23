@@ -16,15 +16,11 @@ make.bat html
 
 Contributions to the documentation are very welcome! Please send me pull requests on GitHub!
 
-The docs in brewpi-www contain:
- * General user oriented documentation (like Getting Started)
- * Web interface specific developer documentation: JavaScript, PHP, CSS
+This repository is for end user documentation. Our build server builds docs.brewpi.com from this repository.
+It also contains the changelog for the project, which is updated each official release.
 
-Documentation for the API layer in Python will be added to the brewpi-script repo.
-Documentation for the code that runs on the Arduino (C++) will go into the brewpi-avr repo.
-
-The docs from all 3 repositories will be combined by our build server and published on the BrewPi website.
-By keeping the docs in the repositories, they can be updated and committed at the same time as the code.
+Developer documentation (API, function descriptions, etc) will be added to the code repositories, not here.
 
 IntelliJ IDEA has a plugin by JetBrains for reStructured text, which you can install through the plugin manager.
+BrewPi has an open source license for IDEA. if you want to use it for BrewPi, you can request the key by e-mail.
 
