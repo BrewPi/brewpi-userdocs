@@ -26,6 +26,7 @@ Web interface (brewpi-www) | 0.2 -> 0.3
 * Added dialog to start/stop/pause data logging and to start a new brew
 * Split config files in default config in source control and user config outside of source control
 * Better way to hide page elements while rendering
+* Room temp and fridge temp are now hidden by default to reduce clutter. Click the circles next to the graph to show them.
 * Bug fixes and layout fixes
 
 `All brewpi-www changes on GitHub <https://github.com/BrewPi/brewpi-www/compare/0.2.0...0.3.0>`_
