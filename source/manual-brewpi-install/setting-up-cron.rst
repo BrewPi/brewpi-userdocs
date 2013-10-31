@@ -48,4 +48,4 @@ Restart CRON after adding/editing the file:
 
 .. code-block:: bash
 
-    sudo /etc/init.d/cron restart||die
+    sudo /etc/init.d/cron restart
