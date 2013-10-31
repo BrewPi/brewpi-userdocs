@@ -82,7 +82,7 @@ Remember to select Apache2 with the space bar when it comes up! After installati
 
 To easily see when your pi is back online, create a shortcut in your quick launch bar with the following target (for the correct IP address of course):
 
-.. code-block:: bash
+.. code-block:: bat
 
     C:\Windows\System32\cmd.exe /c "ping -t 192.168.0.6"
 

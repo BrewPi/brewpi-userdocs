@@ -24,7 +24,7 @@ Then issue the following command, using the device node name found in the previo
 
 You will get a bunch of output.  The relevant ``looking at parent device`` section will be the one that contains a line that states ``ATTRS{product}=="Arduino Leonardo"`` (your Arduino model may differ).  Here is the output from the section to look at from one of my Arduinos:
 
-.. code-block:: none
+.. code-block:: text
 
       looking at parent device '/devices/platform/bcm2708_usb/usb1/1-1/1-1.3/1-1.3.3/1-1.3.3.3':
         KERNELS=="1-1.3.3.3"
@@ -60,7 +60,7 @@ You will get a bunch of output.  The relevant ``looking at parent device`` secti
 
 The important line in the output above is the ``KERNELS`` line.  Write that line down and save it for later.
 
-.. code-block:: none
+.. code-block:: text
 
     KERNELS=="1-1.3.3.3"
 
@@ -70,14 +70,14 @@ Write the udev rules
 """"""""""""""""""""
 Now that the identifier for each USB hub port has been obtained, the udev rules can be written.  In my case, I have the following identifiers:
 
-.. code-block:: none
+.. code-block:: text
 
     KERNELS=="1-1.3.3.3"
     KERNELS=="1-1.3.3.4"
 
 Create the file ``/etc/udev/rules.d/99-arduino.rules`` with contents similar to the following:
 
-.. code-block:: none
+.. code-block:: text
 
     SUBSYSTEM=="tty", KERNEL=="ttyACM*", KERNELS=="1-1.3.3.3", SYMLINK+="arduino_bottom"
     SUBSYSTEM=="tty", KERNEL=="ttyACM*", KERNELS=="1-1.3.3.4", SYMLINK+="arduino_top"
@@ -209,7 +209,7 @@ Create cron job files for each script instance.  Here are the config files I'm u
 /etc/cron.d/brewpi_bottom
 """""""""""""""""""""""""
 
-.. code-block:: none
+.. code-block:: bash
 
     PYTHON=/usr/bin/python
     SCRIPTPATH=/home/brewpi/bottom
@@ -219,7 +219,7 @@ Create cron job files for each script instance.  Here are the config files I'm u
 /etc/cron.d/brewpi_top
 """"""""""""""""""""""
 
-.. code-block:: none
+.. code-block:: bash
 
     PYTHON=/usr/bin/python
     SCRIPTPATH=/home/brewpi/top

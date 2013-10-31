@@ -58,7 +58,7 @@ To improve the stability of your WiFi, it is recommended to disable power manage
 
 #. Add this line to the file and save:
 
-.. code-block:: bash
+.. code-block:: text
 
     options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
 
@@ -87,7 +87,7 @@ To edit your interfaces, you can run:
 
 My /etc/network/interfaces file looks like this:
 
-.. code-block:: bash
+.. code-block:: text
 
     auto lo
     iface lo inet loopback

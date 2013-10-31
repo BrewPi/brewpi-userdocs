@@ -18,7 +18,7 @@ Now, verify your work:
 
 You should see something similar to:
 
-.. code-block:: bash
+.. code-block:: text
 
     uid=1001(brewpi) gid=1002(brewpi) groups=1002(brewpi),20(dialout),33(www-data)
 
