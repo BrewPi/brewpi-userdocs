@@ -2,7 +2,7 @@ Running Multiple Arduinos on the Same RaspberryPi
 =================================================
 In some cases it may be desired to run multiple Arduinos on the same RaspberryPi (RPi).  A common reason for doing this is to support multiple chambers (one Arduino per chamber) with a single RPi.
 
-This guide explains how to configure your RPi to run two instances of BrewPi to support two Arduinos controlling two chambers (top and bottom).  The use of the `manual installation process <../manual-brewpi-install/manual-brewpi-install>`_ is necessary.  The concepts in this guide can also be used to add more than Arduinos, although there will be some limit as to the number of script instances that the RPi can handle.
+This guide explains how to configure your RPi to run two instances of BrewPi to support two Arduinos controlling two chambers (top and bottom).  The use of the :doc:`manual installation process <../manual-brewpi-install/manual-brewpi-install>` is necessary.  The concepts in this guide can also be used to add more than Arduinos, although there will be some limit as to the number of script instances that the RPi can handle.
 
 Setup udev rules for the Arduinos
 ---------------------------------
@@ -103,7 +103,7 @@ Once the udev rules file is created, disconnect your Arduino and then reload ude
 
 Install BrewPi
 --------------
-Install the BrewPi script manually as described in the `manual installation process`_, noting the following changes:
+Install the BrewPi script and web interface manually as described in the :doc:`manual installation process <../manual-brewpi-install/manual-brewpi-install>`, noting the following changes:
 
 * ``git clone`` brewpi-script into subdirectories of ``/home/brewpi`` instead of directly into ``/home/brewpi``.  I used ``/home/brewpi/top`` and ``/home/brewpi/bottom`` to match the chamber each Arduino controls.
 * ``git clone`` brewpi-www into subdirectories of ``/var/www`` instead of directly into ``/var/www``.  I used ``/var/www/top`` and ``/var/www/bottom`` to match each script installation directory.
@@ -237,7 +237,7 @@ Variable and command explanation
 | SCRIPTPATH | | Set to the full path of the script instance that corresponds to this cron job.  Do not include a trailing slash. |
 +------------+--------------------------------------------------------------------------------------------------------------------+
 
-``--config $SCRIPTPATH/settings/config.cfg`` is specified for both invocations of the script in the cron job so that BrewPi's process monitoring can see that each script instance is unique.  For a description of the rest of the items in the cron job command, see the `manual installation process cron job page <../manual-brewpi-install/setting-up-cron>`_.
+``--config $SCRIPTPATH/settings/config.cfg`` is specified for both invocations of the script in the cron job so that BrewPi's process monitoring can see that each script instance is unique.  For a description of the rest of the items in the cron job command, see the :doc:`manual installation process cron job page <../manual-brewpi-install/setting-up-cron>`.
 
 Updating
 --------
