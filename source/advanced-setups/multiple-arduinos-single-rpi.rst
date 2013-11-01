@@ -1,3 +1,5 @@
+:tocdepth: 3
+
 Running Multiple Arduinos on the Same RaspberryPi
 =================================================
 In some cases it may be desired to run multiple Arduinos on the same RaspberryPi (RPi).  A common reason for doing this is to support multiple chambers (one Arduino per chamber) with a single RPi.
@@ -9,7 +11,7 @@ Setup udev rules for the Arduinos
 By using udev, you can create static device node symlinks based on the port of the USB hub that each Arduino is plugged into. [#]_  This allows you to be confident that each script instance is always controlling the correct Arduino.
 
 Determine the USB hub port identifiers
-""""""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 With only one Arduino connected, issue the following command to see which device node the Arduino is currently using:
 
 .. code-block:: bash
@@ -67,7 +69,7 @@ The important line in the output above is the ``KERNELS`` line.  Write that line
 Next, move the Arduino to the next port on the USB hub that you will use for another Arduino, and repeat the steps previously listed in this section.  Repeat the process for as many Arduinos as you will be using.
 
 Write the udev rules
-""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^
 Now that the identifier for each USB hub port has been obtained, the udev rules can be written.  In my case, I have the following identifiers:
 
 .. code-block:: text
@@ -120,11 +122,11 @@ Modify the config files
 -----------------------
 
 Edit the script config files
-""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ``settings/config.cfg`` needs to be created in each script instance to properly configure them.  Here are the config files I'm using.
 
 /home/brewpi/bottom/settings/config.cfg
-'''''''''''''''''''''''''''''''''''''''
+"""""""""""""""""""""""""""""""""""""""
 
 .. code-block:: python
 
@@ -135,7 +137,7 @@ Edit the script config files
     boardType = leonardo
 
 /home/brewpi/top/settings/config.cfg
-''''''''''''''''''''''''''''''''''''
+""""""""""""""""""""""""""""""""""""
 
 .. code-block:: python
 
@@ -146,7 +148,7 @@ Edit the script config files
     boardType = leonardo
 
 Variable explanation
-''''''''''''''''''''
+""""""""""""""""""""
 
 +------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Variable   | Value                                                                                                                                                |
@@ -164,11 +166,11 @@ Variable explanation
 +------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Edit the web interface config files
-"""""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ``config_user.php`` needs to be created in each web interface instance to properly configure them.  Here are the config files I'm using.
 
 /var/www/bottom/config_user.php
-'''''''''''''''''''''''''''''''
+"""""""""""""""""""""""""""""""
 
 .. code-block:: php
 
@@ -181,7 +183,7 @@ Edit the web interface config files
             $scriptPath = '/home/brewpi/bottom';
 
 /var/www/top/config_user.php
-''''''''''''''''''''''''''''
+""""""""""""""""""""""""""""
 
 .. code-block:: php
 
@@ -194,7 +196,7 @@ Edit the web interface config files
             $scriptPath = '/home/brewpi/top';
 
 Variable explanation
-''''''''''''''''''''
+""""""""""""""""""""
 
 +-------------+----------------------------------------------------------------------------------------------------------------------------------+
 | Variable    | Value                                                                                                                            |
@@ -207,7 +209,7 @@ Set up cron jobs to start the scripts
 Create cron job files for each script instance.  Here are the config files I'm using.
 
 /etc/cron.d/brewpi_bottom
-"""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -217,7 +219,7 @@ Create cron job files for each script instance.  Here are the config files I'm u
     * * * * * brewpi $PYTHON $SCRIPTPATH/brewpi.py --config $SCRIPTPATH/settings/config.cfg --checkstartuponly --dontrunfile; [ $? != 0 ] && $PYTHON -u $SCRIPTPATH/brewpi.py --config $SCRIPTPATH/settings/config.cfg 1>$SCRIPTPATH/logs/stdout.txt 2>>$SCRIPTPATH/logs/stderr.txt &
 
 /etc/cron.d/brewpi_top
-""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -227,7 +229,7 @@ Create cron job files for each script instance.  Here are the config files I'm u
     * * * * * brewpi $PYTHON $SCRIPTPATH/brewpi.py --config $SCRIPTPATH/settings/config.cfg --checkstartuponly --dontrunfile; [ $? != 0 ] && $PYTHON -u $SCRIPTPATH/brewpi.py --config $SCRIPTPATH/settings/config.cfg 1>$SCRIPTPATH/logs/stdout.txt 2>>$SCRIPTPATH/logs/stderr.txt &
 
 Variable and command explanation
-""""""""""""""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +------------+--------------------------------------------------------------------------------------------------------------------+
 | Variable   | Value                                                                                                              |

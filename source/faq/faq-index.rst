@@ -5,6 +5,6 @@ Will fill this with useful content ASAP!
 
 .. toctree::
     :maxdepth: 1
-    :numbered:
+    :numbered: 3
 
     How do I run multiple Arduinos on the same RaspberryPi? <../advanced-setups/multiple-arduinos-single-rpi>
