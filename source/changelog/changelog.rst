@@ -13,6 +13,7 @@ The biggest changes in this release are:
 * Added an install and update script! Just run the script and afterwards go straight to flashing your Arduino and setting up devices.
   Huge thank you to Geo van O. (Freeder)  for his hard work on these scripts.
 * Tweaked the temperature control algorithm to reduce overshoot.
+* Use cron.d instead of crontab to make automated updating of the cron job easier
 
 Instructions for installing/updating BrewPi can be found in the documentation.
 and the scripts are part of the new `brewpi-tools repository on GitHub <https://github.com/BrewPi/brewpi-tools>`_.
