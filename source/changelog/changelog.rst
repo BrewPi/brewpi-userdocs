@@ -1,7 +1,100 @@
 Changelog
 =========
 
-October 22nd, 2013
+January 20th, 2014
+------------------
+In this release: a new legend for the charts, mash temperatures,
+
+Web interface (brewpi-www) | 0.3.0 -> 0.3.1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Brian Schwinn reworked the legend for the beer charts to show much more info and to be a lot prettier.
+
+*New legend for the beer chart*
+
+* Legend moved to the right instead of on top of the chart.
+* Legend now shows in which state BrewPi was (cooling/heating/waiting etc.) on mouse-over
+* Enabling/disabling lines in the chart (click the legend item) is now stored in HTML5 Local Storage, so it is remembered when you reload the page.
+
+*Various bug fixes and small edits:*
+
+* User documentation removed from brewpi-www repo and moved to separate repository (brewpi-userdocs)
+* Beer name removed from maintenance panel (start/stop beer is now done by clicking beer name)
+* Added a refresh button if the chart has no data points yet
+* Fix for DS2413 devices in device manager
+* Better error checking when loading logs
+* Removed 'profiles' directory from previous beers drop-down menu
+
+`All brewpi-www changes on GitHub <https://github.com/BrewPi/brewpi-www/compare/0.3.0...0.3.1>`_
+
+BrewPi Python scripts | 0.3.0 -> 0.3.1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Geo did most work for the BrewPi script this time, he added a script to keep Wifi alive and reworked the update script to also update the Arduino.
+
+*WiFi Checker Script*
+
+A new script in the utils directory can check whether the WiFi connection is working properly and if not, it resets wlan0 using ifup and ifdown.
+This script can be installed using 'checkScript.sh install'. This adds it to cron.d/brewpi to run every 10 minutes.
+
+*Small changes*:
+
+* Moved opening serial into BrewPiUtil, so it can be used by the programming script too.
+* Added pin list for DIY shield
+* Parsing of the commit SHA in the Arduino version string
+
+`All brewpi-script changes on GitHub <https://github.com/BrewPi/brewpi-script/compare/0.3.0...0.3.1>`_
+
+
+Arduino code (brewpi-avr)  | 0.2.3.1 -> 0.2.4
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The biggest changes in the Arduino code for this release are:
+
+* Shift of the internal temperature format from -64/+64 degree Celsius to -16/+112 degree Celsius. BrewPi can now be used to log your mash temperatures too (Elco).
+  Actuators with PWM for mashing will come in the next release.
+* Better handling of temperature sensor disconnects and resets (awesome work by Matthew McGowan).
+* Added a NetBeans project to build the Arduino code into a standalone windows application (exe), for testing and simulation (Matthew)
+* Added googletest framework for unit testing (Matthew)
+
+*Sensor reset detection and smart initialization (Matthew)*
+
+* Sensor reset detection: the DS18B20 loads values from non-volatile (EEPROM) memory to volatile memory on startup.
+  By writing a different value to the volatile memory after init, we can see when the sensors have been reset between reads.
+  When a reset is detected, we know not to thrust the next read form the sensor (which defaults to 85C)
+* Removed unused fields and code in the DallasTemperature library for reduced code size and memory footprint.
+* Smarter re-initialization of sensors and filters. It is now only done after a number of failed reads.
+
+
+*Various changes*
+
+* Changed receive function to handle all incoming messages instead of one each main loop. This bug should have been noticed much earlier.
+  It could cause the Arduino to be slow to respond to messages in certain circumstances.
+* Included Arduino files in the project and removed USB HID driver support from Arduino files. This saves 918 bytes!
+* Changed how the processor/Arduino type is detected in the build (now based on processor)
+* Removed devices installed by default for RevA shields. These caused conflicts when devices were restored too. Now RevA behaves like RevC.
+* Support for using DS2413 as switch input (Matthew)
+* Added a minimum for overshoot estimators. They could not recover from being zero before this fix.
+* Include commit SHA in version number
+
+`All brewpi-www changes on GitHub <https://github.com/BrewPi/brewpi-www/compare/0.2.3.1...0.2.4>`_
+
+Install and update tools (Brewpi-tools)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Update script now also checks Arduino version and can reprogram the Arduino. It downloads the latest hex file from the BrewPi server.
+* Added Wifi check script to install (add to cron.d)
+
+`All brewpi-tools changes on GitHub <https://github.com/BrewPi/brewpi-tools/compare/0.1.0...0.2.0>`_
+
+
+December 23, 2013
+-----------------
+
+Arduduino code(brewpi-avr) | 0.2.3 -> 0.2.3.1
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hotfix: pidMax was printed as a temperature (with offset in Fahrenheit) which caused it to be restored incorrectly when programming the Arduino.
+
+
+October 22, 2013
 ------------------
 It's been a long time since a master release, but in this release we made some major steps to make releasing easier in the future.
 
@@ -11,7 +104,7 @@ The biggest changes in this release are:
   Huge thank you to Brian Schwinn (bschwinn) for his hard work on this feature.
 * Added an easy menu to start a new brew, start/stop/pause data logging
 * Added an install and update script! Just run the script and afterwards go straight to flashing your Arduino and setting up devices.
-  Huge thank you to Geo van O. (Freeder)  for his hard work on these scripts.
+  Huge thank you to Geo van O. for his hard work on these scripts.
 * Tweaked the temperature control algorithm to reduce overshoot.
 * Use cron.d instead of crontab to make automated updating of the cron job easier
 
