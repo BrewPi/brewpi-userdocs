@@ -62,7 +62,7 @@ To improve the stability of your WiFi, it is recommended to disable power manage
 
     options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
 
-Alternatively you can add a line to your crontab to ping your router every minute to keep the connection alive. Open your current users crontab with:
+Alternatively, you can add a line to your crontab to ping your router every minute to keep the connection alive. Open your current users crontab with:
 
 .. code-block:: bash
 
@@ -104,6 +104,12 @@ My /etc/network/interfaces file looks like this:
 The right IP addresses depend on your home network setup.
 You can run ifconfig before editing the interfaces and write the automatically assigned addresses down.
 However, it is recommended to pick a static Ip address that is outside of your router's DHCP range.
+
+Finally, you will need to restart your network interfaces for these changes to occur:
+
+.. code-block:: text
+
+    sudo service networking restart
 
 
 Updating programs
