@@ -1,5 +1,10 @@
 Changelog
 =========
+February 7th, 2014
+------------------
+* Changed how the CRON job is managed. Moved all functionality into updateCron.sh.
+* Fixed the CRON entry for wifiChecker.sh
+
 
 January 20th, 2014
 ------------------
